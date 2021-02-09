@@ -12,7 +12,7 @@ import space.ponyo.dc1.server.util.LogUtil;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-
+@CrossOrigin
 @RestController
 public class Controller {
 
