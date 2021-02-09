@@ -41,6 +41,20 @@ public class Controller {
         return MyHttpResponse.success(PlanDao.getInstance().queryAllByDeviceId(deviceId));
     }
 
+    @RequestMapping(value = "/api/setDeviceStatus",
+            method = {RequestMethod.GET, RequestMethod.POST},
+            produces = {"text/html;charset=utf-8"})
+    public String queryDeviceList(
+            @RequestParam(name = "token") String token,
+            @RequestParam(name = "deviceId") String deviceId,
+            @RequestParam(name = "status") String status) {
+        if (checkToken(token)) {
+            return MyHttpResponse.error("token验证失败！");
+        }
+        ConnectionManager.getInstance().setDc1Status(deviceId,status);
+        return MyHttpResponse.success("成功");
+    }
+
     @RequestMapping(value = "/api/addPlan",
             method = {RequestMethod.GET, RequestMethod.POST},
             produces = {"text/html;charset=utf-8"})
